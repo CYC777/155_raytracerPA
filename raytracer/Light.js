@@ -1,11 +1,14 @@
 
 class Light{
-  constructor(position){
+  constructor(position, fog){
     this.position = position
     this.intensity = 1.0
     this.ambientColor = Color.BLACK
     this.diffuseColor = Color.WHITE
     this.specularColor = Color.WHITE
+      if (fog)
+        console.log("construct fog")
+      this.fog = fog
   }
 
   ambient(){

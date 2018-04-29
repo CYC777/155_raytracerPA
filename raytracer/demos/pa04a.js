@@ -17,8 +17,9 @@ function runTest(){
 	canvas.height=900
 	// const renderer = new Renderer(400,400)
 	const renderer = new Renderer(900,900)
-	const scene = new Scene('pa04a')
-
+	// const scene = new Scene('pa04a')
+	const scene = new Scene_travis('pa04a', true)
+	// const scene = new Scene_tang('pa04a', false)
 
 	const mat1 = Material.standard()
 	mat1.texture = texture1
@@ -31,9 +32,6 @@ function runTest(){
 	// mat2.textureWeight = 0.5
 	// mat2.texture.repeatU=1
 	// mat2.texture.repeatV=1
-
-
-
 
 	//const s1 = new Sphere(new Vector3(-2,0,-80),20)
 	//const s2 = new Sphere(new Vector3(-50,0,-80),10)
@@ -61,6 +59,8 @@ function runTest(){
 			.scale(new Vector3(0.5,0.5,0.5))
 		scene.addObject(s)
 		balls.push(s)
+		if (scene.fog)
+			scene.addBall(s)
 		dx += 1
 		dz += 1
 		console.log(i)
@@ -94,22 +94,22 @@ function runTest(){
 	scene.addObject(ground)
 
 
-	const light1 = new Light(new Vector3(-6,15,10))
+	const light1 = new Light(new Vector3(-6,15,10), false)
 	light1.intensity = 0.5
 	light1.diffuseColor = Color.WHITE
-	light1.specularColor = Color.RED
+	light1.specularColor = Color.WHITE
 	scene.addLight(light1)
 
-	const light2 = new Light(new Vector3(-8,5,8))
+	const light2 = new Light(new Vector3(-8,5,8), false)
 	light2.intensity = 0.75
 	light2.diffuseColor = Color.WHITE
 	light2.specularColor = Color.BLUE
 	scene.addLight(light2)
 
-	const fog = new Light(new Vector3(0,0,0))
-	fog.intensity = 1
-	fog.diffuseColor = Color.WHITE
-	scene.addLight(fog)
+	// const fog = new Light(new Vector3(0,2,4), true)
+	// fog.intensity = 0
+	// fog.diffuseColor = Color.WHITE
+	// scene.addLight(fog)
 
 	const camera = new Camera()
 	camera.translate(new Vector3(0,6,10))

@@ -31,6 +31,11 @@ class Renderer {
         const r = camera.createRay(x,y) // this creates the ray for pixel (i,j)
         const pixelColor = scene.getColorForRay(r,this.depth)
         this.drawPixel(i,j,pixelColor.to255())
+          if (scene.fog) {
+	          const pixelColor2 = scene.getColorForRay2(r,this.depth, pixelColor)
+	          this.drawPixel(i,j,pixelColor2.to255())
+          }
+
       }
     }
   }
